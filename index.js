@@ -1,12 +1,13 @@
 const express = require("express");
 const AWS = require("aws-sdk");
+require("dotenv").config();
 
 const app = express();
 const port = 3000;
 
 // Serve static files from 'public' folder
 app.use(express.static("public"));
-
+// Configure the AWS SDK to use the OORT endpoint and your credentials
 // Configure the AWS SDK to use the OORT endpoint and your credentials
 const s3 = new AWS.S3({
   endpoint: process.env.OORT_ENDPOINT,
