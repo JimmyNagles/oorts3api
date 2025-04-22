@@ -46,11 +46,12 @@ app.get("/api/list-objects/:bucketName", async (req, res) => {
 // Endpoint to generate a signed URL for uploading
 app.get("/api/upload-url/:bucketName/:fileName", async (req, res) => {
   const { bucketName, fileName } = req.params;
+  const contentType = req.query.contentType || "application/octet-stream";
   const params = {
     Bucket: bucketName,
     Key: fileName,
     Expires: 60, // URL expires in 60 seconds
-    ContentType: "application/octet-stream", // You can specify the content type
+    ContentType: contentType, // Use the content type from the request
   };
   try {
     const url = await s3.getSignedUrlPromise("putObject", params);

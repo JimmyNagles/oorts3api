@@ -5,17 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>S3 Bucket Viewer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+      }
+      h1,
+      h2 {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+      }
+      li:hover {
+        background-color: #f0f0f0;
+      }
+      #uploadSection {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+      }
+      button {
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      input[type="file"] {
+        padding: 5px;
+      }
+      #notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: opacity 0.3s ease-in-out;
+      }
+      #uploadStatus {
+        margin-top: 10px;
+        padding: 8px;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        border-left: 4px solid #6c757d;
+      }
+    </style>
   </head>
   <body>
-    <h1>S3 Buckets</h1>
-    <ul id="buckets"></ul>
+    <h1>S3 Bucket Viewer</h1>
 
-    <h1>Objects in Bucket</h1>
-    <ul id="objects"></ul>
+    <div id="bucketSection">
+      <h2>Available Buckets</h2>
+      <ul id="buckets">
+        <li>Loading buckets...</li>
+      </ul>
+    </div>
+
+    <div id="objectSection" style="margin-top: 20px">
+      <h2>Objects in Bucket</h2>
+      <ul id="objects">
+        <li>Select a bucket to view objects.</li>
+      </ul>
+    </div>
 
     <!-- Upload Section -->
     <div id="uploadSection" style="display: none">
-      <h2>Upload a File to Bucket</h2>
+      <h2>
+        Upload a File to Bucket:
+        <span id="uploadBucketName" style="font-weight: bold"></span>
+      </h2>
       <input type="file" id="fileInput" />
       <button onclick="uploadFile()">Upload File</button>
     </div>
