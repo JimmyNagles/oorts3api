@@ -66,6 +66,14 @@
 
     <div id="bucketSection">
       <h2>Available Buckets</h2>
+      <div style="margin-bottom: 10px">
+        <input
+          type="text"
+          id="newBucketName"
+          placeholder="Enter new bucket name"
+        />
+        <button onclick="createBucket()">Create Bucket</button>
+      </div>
       <ul id="buckets">
         <li>Loading buckets...</li>
       </ul>
